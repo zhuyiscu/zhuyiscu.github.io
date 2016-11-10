@@ -1,0 +1,648 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="django,restful," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="环境搭建本次学习包括在win10环境下安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。
+python安装
+在python官方网站选择下载所需要的安装包，本次学习使用的是2.7.10版本，如图：
+
+安装python并配置系统环境，本次学习过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django Rest Framework学习记录(2)--环境搭建">
+<meta property="og:url" content="http://yoursite.com/2016/11/09/Django-Rest-Framework学习记录-2/index.html">
+<meta property="og:site_name" content="大数据小学生">
+<meta property="og:description" content="环境搭建本次学习包括在win10环境下安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。
+python安装
+在python官方网站选择下载所需要的安装包，本次学习使用的是2.7.10版本，如图：
+
+安装python并配置系统环境，本次学习过">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/1.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/2.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/4.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/3.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/5.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/6.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/7.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/8.png">
+<meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/9.png">
+<meta property="og:updated_time" content="2016-11-09T13:35:59.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django Rest Framework学习记录(2)--环境搭建">
+<meta name="twitter:description" content="环境搭建本次学习包括在win10环境下安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。
+python安装
+在python官方网站选择下载所需要的安装包，本次学习使用的是2.7.10版本，如图：
+
+安装python并配置系统环境，本次学习过">
+<meta name="twitter:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录2/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/09/Django-Rest-Framework学习记录-2/"/>
+
+
+  <title> Django Rest Framework学习记录(2)--环境搭建 | 大数据小学生 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">大数据小学生</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">个人主页</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            目录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django Rest Framework学习记录(2)--环境搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T19:54:29+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>本次学习包括在<strong>win10环境下</strong>安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。</p>
+<h2 id="python安装"><a href="#python安装" class="headerlink" title="python安装"></a>python安装</h2><ol>
+<li><p>在<a href="https://www.python.org/downloads/" target="_blank" rel="external">python官方网站</a>选择下载所需要的安装包，本次学习使用的是2.7.10版本，如图：<br><img src="/images/Django_Rest_Framework学习记录2/1.png" alt="python_choose.png"></p>
+</li>
+<li><p>安装python并配置系统环境，本次学习过程中选择默认路径进行安装。具体过程参见：<a href="http://jingyan.baidu.com/article/7908e85c78c743af491ad261.html" target="_blank" rel="external">如何安装python</a></p>
+</li>
+<li><p>安装完成后进入控制台（win+R，输入cmd进入），输入python可查看是否安装正确及python版本号，如图：<br><img src="/images/Django_Rest_Framework学习记录2/2.png" alt="python_check.png"></p>
+</li>
+</ol>
+<h2 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h2><ol>
+<li><p>在python的pip官方页面下载所需的安装包，本次学习所使用的是9.0.1版本，如图：<br><img src="/images/Django_Rest_Framework学习记录2/4.png" alt="pip_choose.png"></p>
+</li>
+<li><p>下载完成后，将压缩包解压到一个文件夹中，使用控制台进入该解压目录，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成后配置系统环境，详情参见：<a href="http://jingyan.baidu.com/article/b907e627a072a846e6891c5a.html" target="_blank" rel="external">windows下安装pip</a></p>
+</li>
+<li><p>在控制台中输入<code>pip</code>显示如下信息说明pip成功安装：<br><img src="/images/Django_Rest_Framework学习记录2/3.png" alt="pip_check.png"></p>
+</li>
+<li><p>pip常见命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip list               //列出已安装的包</div><div class="line">pip install &lt;包名&gt;     //在线安装包</div><div class="line">pip uninstall &lt;包名&gt;   //卸载包</div><div class="line">pip install -U &lt;包名&gt;  //更新包</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="相关资料安装"><a href="#相关资料安装" class="headerlink" title="相关资料安装"></a>相关资料安装</h2><p>根据django-rest-framework官网<a href="http://www.django-rest-framework.org/" target="_blank" rel="external">安装指导</a>，在控制台中输入如下命令安装django、django-rest-framework、django-filter以及markdown。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip install django==1.8.6</div><div class="line">pip install djangorestframework</div><div class="line">pip install markdown       # Markdown support for the browsable API.</div><div class="line">pip install django-filter  # Filtering support</div></pre></td></tr></table></figure></p>
+<h2 id="Django工程的创建和管理"><a href="#Django工程的创建和管理" class="headerlink" title="Django工程的创建和管理"></a>Django工程的创建和管理</h2><ol>
+<li>下载PyCharm。进入<a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">官网</a>下载PyCharm</li>
+<li><p>创建工程<br>实际上所有工程的创建都可以通过单击Welcome screen界面上的Create New Project按钮来实现。<br>如果你已经打开了一个工程，可以通过菜单栏File → New Project…来创建一个新的工程。接下来在 Create New Project dialog对话框中输入工程名字、选择类型以及用到的解释器版本。单击Create，工程的个性化设置完成。<br>对于一个空的工程empty project，创建的环节已经完成了。接下里你就可以开始编写程序。但对于一些所支持的第三方框架，还有一些工作要做。根据所选择的工程类型，Pycharm会提示我们进行一些额外的框架设置。<br>在本实例中，让我们来创建开发一个Django应用：<br><img src="/images/Django_Rest_Framework学习记录2/5.png" alt="create_django.png"><br>单击Create后，一个新的Django工程就建立好了，本次建立的工程不包含应用，因此工程文件较少：<br><img src="/images/Django_Rest_Framework学习记录2/6.png" alt="django_list.png"></p>
+</li>
+<li><p>加载Django服务<br>按下Ctrl+Alt+R可以进入Django服务界面：<br><img src="/images/Django_Rest_Framework学习记录2/7.png" alt="Django_server.png"><br>在该界面下可以进行所有Django控制台操作，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">startapp &lt;应用名&gt; //创建新的应用</div><div class="line">runserver [端口 或 ip：端口] //在指定ip、端口下运行工程</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输入命令<code>startapp firstapp</code>，创建一个新的app test，工程结构变为：<br><img src="/images/Django_Rest_Framework学习记录2/8.png" alt="django_list_2.png"><br>此时我们还需要在Setting目录中添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">    &apos;……&apos;,</div><div class="line">    &apos;django.contrib.messages&apos;,</div><div class="line">    &apos;django.contrib.staticfiles&apos;,</div><div class="line">    &apos;firstapp&apos;,</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<ol>
+<li>创建视图链接<br>接下来我们准备为应用添加一些子视图，让它拥有”homePage”等子页面。首先，我们向urls.py文件中添加这些子页面的模式:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url(r&apos;^$&apos;, &apos;firstapp.views.homePage&apos;),</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这些模式所涉及的页面目前还并不存在，因此需要手动向其中添加一些方法并进行模板关联，这些操作在Pycharm的帮助下会变得异常简单：你只需将鼠标指针悬停在一个未定义（Pycharm会高亮显示那些unresolved reference的代码），这是会亮起一个黄色的小灯泡，这就意味着Pycharm在此准备了一个快速提示，单击小灯泡（或者按下Alt+enter）:<br><img src="/images/Django_Rest_Framework学习记录2/9.png" alt="view_create.png"><br>选择Create Django view method选项来在views.py文件中创建一个视图的成员方法，并与特定的模板文件相关联。接下来我们会看到以下变化：<br>templates目录不再为空，其中包含了我们创建的根模板文件。<br>views.py文件中已经包含了根视图的相关方法。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://blog.csdn.net/u013088062/article/details/50158239" target="_blank" rel="external">Django工程的创建和管理</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag">#django</a>
+          
+            <a href="/tags/restful/" rel="tag">#restful</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/09/Django-Rest-Framework学习记录-1/" rel="next" title="Django Rest Framework学习记录(1)--开篇">
+                <i class="fa fa-chevron-left"></i> Django Rest Framework学习记录(1)--开篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="zhuyi" />
+          <p class="site-author-name" itemprop="name">zhuyi</p>
+          <p class="site-description motion-element" itemprop="description">一步踏尽一树白，一桥轻雨一伞开。一梦黄粱一壶酒，一身白衣一生裁。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python安装"><span class="nav-number">1.1.</span> <span class="nav-text">python安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip安装"><span class="nav-number">1.2.</span> <span class="nav-text">pip安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料安装"><span class="nav-number">1.3.</span> <span class="nav-text">相关资料安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django工程的创建和管理"><span class="nav-number">1.4.</span> <span class="nav-text">Django工程的创建和管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.5.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhuyi</span>
+</div>
+
+<div class="powered-by">
+   <a class="theme-link" href="https://hexo.io">Hexo</a> 
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
