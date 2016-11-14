@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录3/1.png">
 <meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录3/2.png">
 <meta property="og:image" content="http://yoursite.com/images/Django_Rest_Framework学习记录3/3.png">
-<meta property="og:updated_time" content="2016-11-14T02:07:36.535Z">
+<meta property="og:updated_time" content="2016-11-14T02:23:09.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django Rest Framework学习记录(3)-- 简单的开始">
 <meta name="twitter:description" content="“Hello World”“Hello World”是所有计算机语言学习中最简单、粗暴的开始，本次学习过程中我将在Django Rest Framework学习记录(2)–环境搭建学习基础上建立首个最简单粗暴的django-rest-framework工程，并对其中的一些具体情况进行简单记录。">
@@ -319,7 +319,7 @@
 <h2 id="创建表（创建Model）"><a href="#创建表（创建Model）" class="headerlink" title="创建表（创建Model）"></a>创建表（创建Model）</h2><p>打开<code>/study/firstApp/models.py</code>文件，创建一个名为Name的表：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span><span class="params">(models.Model)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于建立表Name，此表包含id,name,birthday三个字段。</div><div class="line">    其中，id字段为隐含字段，数据类型为自增型整数</div><div class="line">    """</div><div class="line">    name = models.CharField(blank=<span class="keyword">False</span>, max_length=<span class="number">100</span>)</div><div class="line">    birthday = models.DateField(blank=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        db_table = <span class="string">'Name'</span></div><div class="line">        ordering = [<span class="string">'-birthday'</span>]</div></pre></td></tr></table></figure></p>
 <p><strong>注：表中的数据可以通过Django的方式添加，也可以进入MySQL直接添加。</strong><br>添加完成后，需要运行建表语句将Name表建立。在本次学习中对内部类Meta进行了更深入的一些了解：</p>
 <ul>
-<li><p>db_tabel</p>
+<li><p>abstract</p>
 <blockquote>
 <p>这个属性是定义当前的模型类是不是一个抽象类。所谓抽象类是不会相应数据库表的。一般我们用它来归纳一些公共属性字段，然后继承它的子类能够继承这些字段。</p>
 </blockquote>
