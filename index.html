@@ -310,67 +310,12 @@
 
       
         
-          
-            <h1 id="“Hello-World”"><a href="#“Hello-World”" class="headerlink" title="“Hello World”"></a>“Hello World”</h1><p>“Hello World”是所有计算机语言学习中最简单、粗暴的开始，本次学习过程中我将在<a href="../../../../../2016/11/09/Django-Rest-Framework%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2/">Django Rest Framework学习记录(2)–环境搭建</a>学习基础上建立首个最简单粗暴的django-rest-framework工程，并对其中的一些具体情况进行简单记录。</p>
-<h2 id="Django工程创建"><a href="#Django工程创建" class="headerlink" title="Django工程创建"></a>Django工程创建</h2><p>在上一次学习的基础上，首先建立一个名为study的Django工程，同时建立了一个名为firstApp的应用：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录3/1.png" alt="create_django.png"><br></div>
-
-<h2 id="项目设置"><a href="#项目设置" class="headerlink" title="项目设置"></a>项目设置</h2><p>Django为用户提供了多种数据库操作接口，包括SQLite3、MySQL、Oracle等，本次学习中我使用MySQL的接口进行学习，因此首先进入<code>/study/study/setting.py</code>对数据库接口进行配置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">DATABASES = &#123;</div><div class="line">    <span class="string">'default'</span>: &#123;</div><div class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</div><div class="line">        <span class="string">'NAME'</span>: <span class="string">'你的数据库名'</span>,</div><div class="line">        <span class="string">'USER'</span>: <span class="string">'你的用户名'</span>,</div><div class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'你的用户密码'</span>,</div><div class="line">        <span class="string">'HOST'</span>: <span class="string">'数据库所在IP地址'</span>,</div><div class="line">        <span class="string">'PORT'</span>: <span class="string">'数据库使用端口'</span>,</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在对数据库进行配置后，我们还需要在<code>setting.py</code>文件中进行一些简单的全局配置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">	……</div><div class="line">    <span class="string">'firstApp'</span>,<span class="comment">#用于新建立的firstApp应用</span></div><div class="line">    <span class="string">'rest_framework'</span>,<span class="comment">#用于django-rest-framework框架</span></div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>在配置完成后，进行表连接并建立管理员：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在pycharm环境下，按下Ctrl+Alt+R后输入以下命令</span></div><div class="line"></div><div class="line"><span class="comment">#在首次建立时可使用以下命令直接建立表以及管理员</span></div><div class="line">syncdb</div><div class="line"></div><div class="line"><span class="comment">#非首次建立,连接表</span></div><div class="line">makemigrations firstApp <span class="comment">#[appname]</span></div><div class="line">migrate <span class="comment">#[appname]</span></div><div class="line"></div><div class="line"><span class="comment">#建立管理员</span></div><div class="line">createsuperuser</div></pre></td></tr></table></figure></p>
-<h2 id="创建表（创建Model）"><a href="#创建表（创建Model）" class="headerlink" title="创建表（创建Model）"></a>创建表（创建Model）</h2><p>打开<code>/study/firstApp/models.py</code>文件，创建一个名为Name的表：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span><span class="params">(models.Model)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于建立表Name，此表包含id,name,birthday三个字段。</div><div class="line">    其中，id字段为隐含字段，数据类型为自增型整数</div><div class="line">    """</div><div class="line">    name = models.CharField(blank=<span class="keyword">False</span>, max_length=<span class="number">100</span>)</div><div class="line">    birthday = models.DateField(blank=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        db_table = <span class="string">'Name'</span></div><div class="line">        ordering = [<span class="string">'-birthday'</span>]</div></pre></td></tr></table></figure></p>
-<p><strong>注：表中的数据可以通过Django的方式添加，也可以进入MySQL直接添加。</strong><br>添加完成后，需要运行建表语句将Name表建立。在本次学习中对内部类Meta进行了更深入的一些了解：</p>
-<ul>
-<li><p>db_tabel</p>
-<blockquote>
-<p>这个属性是定义当前的模型类是不是一个抽象类。所谓抽象类是不会相应数据库表的。一般我们用它来归纳一些公共属性字段，然后继承它的子类能够继承这些字段。</p>
-</blockquote>
-</li>
-<li><p>db_table</p>
-<blockquote>
-<p>db_table用于指定自己定义数据库表名。Django有一套默认的依照一定规则生成数据模型相应的数据库表名。假设你想使用自己定义的表名。就通过这个属性指定.</p>
-</blockquote>
-</li>
-<li><p>managed</p>
-<blockquote>
-<p>因为Django会自己主动依据模型类生成映射的数据库表。假设你不希望Django这么做。能够把managed的值设置为False。</p>
-</blockquote>
-</li>
-<li><p>ordering</p>
-<blockquote>
-<p>这个字段是告诉Django模型对象返回的记录结果集是依照哪个字段排序的。比方以下的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ordering=[<span class="string">'order_date'</span>] <span class="comment"># 按订单升序排列</span></div><div class="line">ordering=[<span class="string">'-order_date'</span>] <span class="comment"># 按订单降序排列，-表示降序</span></div><div class="line">ordering=[<span class="string">'?order_date'</span>] <span class="comment"># 随机排序。？表示随机</span></div></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>permissions</p>
-<blockquote>
-<p>permissions主要是为了在Django Admin管理模块下使用的。假设你设置了这个属性能够让指定的方法权限描写叙述更清晰可读。</p>
-</blockquote>
-</li>
-<li><p>unique_together</p>
-<blockquote>
-<p>unique_together这个选项用于：当你须要通过两个字段保持唯一性时使用。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>django-rest-framework的序列化类类似于django的表单类，不同的是django的表单类是用于沟通django的Model和网页form之间的桥梁；而序列化类是用于沟通django的Model类和JSON数据格式之间的桥梁。<br>序列化的操作还有许多需要学习的地方，在本次学习中我先简单的实现系统内部表格User、Group以及上文中自建的表格Name。<br>首先，我们创建一个文件<code>/study/firstApp/serializers.py</code>来编写序列化代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User, Group</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"><span class="keyword">from</span> firstApp.models <span class="keyword">import</span> Name</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSerializer</span><span class="params">(serializers.HyperlinkedModelSerializer)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于序列化User表</div><div class="line">    """</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = User</div><div class="line">        fields = (<span class="string">'url'</span>, <span class="string">'username'</span>, <span class="string">'email'</span>, <span class="string">'groups'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupSerializer</span><span class="params">(serializers.HyperlinkedModelSerializer)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于序列化Group表</div><div class="line">    """</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = Group</div><div class="line">        fields = (<span class="string">'url'</span>, <span class="string">'name'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">nameSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于序列化Name表</div><div class="line">    """</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = Name</div><div class="line">        fields = (<span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'birthday'</span>)</div></pre></td></tr></table></figure></p>
-<h2 id="类视图"><a href="#类视图" class="headerlink" title="类视图"></a>类视图</h2><p>在django-rest-framework中提供了多种视图使用方式，我将会在以后的学习中进行更为详细的介绍，在本次学习中先简单的实现系统表User、Group的简单API接口，以及Name类的Json读取接口。<br>首先，进入文件<code>/study/firstApp/views.py</code>，编写代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User, Group</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</div><div class="line"><span class="keyword">from</span> firstApp.serializers <span class="keyword">import</span> UserSerializer, GroupSerializer</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</div><div class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer</div><div class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser</div><div class="line"><span class="keyword">from</span> firstApp.models <span class="keyword">import</span> Name</div><div class="line"><span class="keyword">from</span> firstApp.serializers <span class="keyword">import</span> nameSerializer</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserViewSet</span><span class="params">(viewsets.ModelViewSet)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    查看、编辑用户User界面。</div><div class="line">    """</div><div class="line">    queryset = User.objects.all().order_by(<span class="string">'-date_joined'</span>)</div><div class="line">    serializer_class = UserSerializer</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupViewSet</span><span class="params">(viewsets.ModelViewSet)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    查看编辑组Group界面</div><div class="line">    """</div><div class="line">    queryset = Group.objects.all()</div><div class="line">    serializer_class = GroupSerializer</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONResponse</span><span class="params">(HttpResponse)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用于返回JSON数据</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data, **kwargs)</span>:</span></div><div class="line">        content = JSONRenderer().render(data)</div><div class="line">        kwargs[<span class="string">'content_type'</span>] = <span class="string">'application/json'</span></div><div class="line">        super(JSONResponse, self).__init__(content, **kwargs)</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@csrf_exempt</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_list</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    展示所有firstApp或创建新的firstApp</div><div class="line">    :param request:</div><div class="line">    :return:</div><div class="line">    """</div><div class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</div><div class="line">        name = Name.objects.all()</div><div class="line">        ser = nameSerializer(name, many=<span class="keyword">True</span>)</div><div class="line">        <span class="keyword">return</span> JSONResponse(ser.data)</div><div class="line"></div><div class="line">    <span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</div><div class="line">        data = JSONParser().parse(request)</div><div class="line">        ser = nameSerializer(data=data)</div><div class="line">        <span class="keyword">if</span> ser.is_valid():</div><div class="line">            ser.save()</div><div class="line">            <span class="keyword">return</span> JSONResponse(ser.data, status=<span class="number">201</span>)</div><div class="line">        <span class="keyword">return</span> JSONResponse(ser.errors, status=<span class="number">400</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@csrf_exempt</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_detail</span><span class="params">(request, pk)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    修改或删除一个firstApp</div><div class="line">    :param request:</div><div class="line">    :param pk:</div><div class="line">    :return:</div><div class="line">    """</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        name = Name.objects.get(pk=pk)</div><div class="line">    <span class="keyword">except</span> Name.DoesNotExist:</div><div class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">404</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> request.method == <span class="string">"GET"</span>:</div><div class="line">        ser = nameSerializer(name)</div><div class="line">        <span class="keyword">return</span> JSONResponse(ser.data)</div><div class="line"></div><div class="line">    <span class="keyword">elif</span> request.method == <span class="string">"PUT"</span>:</div><div class="line">        data = JSONParser().parse(request)</div><div class="line">        ser = nameSerializer(name, data=data)</div><div class="line">        <span class="keyword">if</span> ser.is_valid():</div><div class="line">            ser.save()</div><div class="line">            <span class="keyword">return</span> JSONResponse(ser.data)</div><div class="line">        <span class="keyword">return</span> JSONResponse(ser.errors, status=<span class="number">400</span>)</div><div class="line"></div><div class="line">    <span class="keyword">elif</span> request.method == <span class="string">"DELETE"</span>:</div><div class="line">        name.delete()</div><div class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">204</span>)</div></pre></td></tr></table></figure></p>
-<p>对于许多常见的操作django-rest-framework都封装在了类ViewSets中，这样就不用编写重复代码了。当然，我们可以按照自己的需求编写view，例如Name的序列化，我们并不需要图示，因此编辑了Json的返回。但是，使用ViewSets可以保持view代码的简洁以及逻辑的清晰。</p>
-<h2 id="建立URL"><a href="#建立URL" class="headerlink" title="建立URL"></a>建立URL</h2><p>进入文件<code>/study/study/urls.py</code>编写URL：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> routers</div><div class="line"><span class="keyword">from</span> firstApp <span class="keyword">import</span> views</div><div class="line"></div><div class="line"></div><div class="line">router = routers.DefaultRouter()</div><div class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</div><div class="line">router.register(<span class="string">r'groups'</span>, views.GroupViewSet)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 使用URL路由来管理我们的API</span></div><div class="line"><span class="comment"># 另外添加登录相关的URL</span></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^'</span>, include(router.urls)),</div><div class="line">    url(<span class="string">r'^name/$'</span>, views.name_list),</div><div class="line">    url(<span class="string">r'^name/(?P&lt;pk&gt;[0-9]+)/$'</span>, views.name_detail),</div><div class="line">    url(<span class="string">r'^api-auth'</span>, include(<span class="string">'rest_framework.urls'</span>, namespace=<span class="string">'rest_framework'</span>)),</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<p>因为我在视图类中使用了<code>viewsets</code>，所以可以通过<code>router</code>类来自动生成URL配置信息。但是如果需要更自主的配置URL，例如：name，需要使用常规的类视图以及显示的编写URL配置。最后我添加了默认的登录、登出视图用于浏览API。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>我对上述建立的API进行了简单的测试。在pycharm环境下按下<code>Ctrl+Alt+R</code>输入命令<code>runserver</code>即可运行整个工程。直接打开浏览器即可进行简单的查阅。</p>
-<ul>
-<li><p>User、Group的系统视图</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录3/2.png" alt="user_and_group.png"><br></div>
-</li>
-<li><p>Name表Json数据返回</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录3/3.png" alt="name.png"><br></div>
-
-</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ziqiangxuetang.com/django/django-tutorial.html" target="_blank" rel="external">Django 基础教程–自强学堂</a></p>
-
-          
+          <h1 id="“Hello-World”"><a href="#“Hello-World”" class="headerlink" title="“Hello World”"></a>“Hello World”</h1><p>“Hello World”是所有计算机语言学习中最简单、粗暴的开始，本次学习过程中我将在<a href="../../../../../2016/11/09/Django-Rest-Framework%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2/">Django Rest Framework学习记录(2)–环境搭建</a>学习基础上建立首个最简单粗暴的django-rest-framework工程，并对其中的一些具体情况进行简单记录。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/11/Django-Rest-Framework学习记录-3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -487,58 +432,12 @@
 
       
         
-          
-            <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>本次学习包括在<strong>win10环境下</strong>安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。</p>
-<h2 id="python安装"><a href="#python安装" class="headerlink" title="python安装"></a>python安装</h2><ol>
-<li><p>在<a href="https://www.python.org/downloads/" target="_blank" rel="external">python官方网站</a>选择下载所需要的安装包，本次学习使用的是2.7.10版本，如图：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/1.png" alt="python_choose.png"><br></div>
-</li>
-<li><p>安装python并配置系统环境，本次学习过程中选择默认路径进行安装。具体过程参见：<a href="http://jingyan.baidu.com/article/7908e85c78c743af491ad261.html" target="_blank" rel="external">如何安装python</a></p>
-</li>
-<li><p>安装完成后进入控制台（win+R，输入cmd进入），输入python可查看是否安装正确及python版本号，如图：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/2.png" alt="python_check.png"><br></div>
-
-</li>
-</ol>
-<h2 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h2><ol>
-<li><p>在python的pip官方页面下载所需的安装包，本次学习所使用的是9.0.1版本，如图：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/4.png" alt="pip_choose.png"><br></div>
-</li>
-<li><p>下载完成后，将压缩包解压到一个文件夹中，使用控制台进入该解压目录，输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装完成后配置系统环境，详情参见：<a href="http://jingyan.baidu.com/article/b907e627a072a846e6891c5a.html" target="_blank" rel="external">windows下安装pip</a></p>
-</li>
-<li><p>在控制台中输入<code>pip</code>显示如下信息说明pip成功安装：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/3.png" alt="pip_check.png"><br></div>
-</li>
-<li><p>pip常见命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip list               <span class="comment">#列出已安装的包</span></div><div class="line">pip install &lt;包名&gt;     <span class="comment">#在线安装包</span></div><div class="line">pip uninstall &lt;包名&gt;   <span class="comment">#卸载包</span></div><div class="line">pip install -U &lt;包名&gt;  <span class="comment">#更新包</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="相关资料安装"><a href="#相关资料安装" class="headerlink" title="相关资料安装"></a>相关资料安装</h2><p>根据django-rest-framework官网<a href="http://www.django-rest-framework.org/" target="_blank" rel="external">安装指导</a>，在控制台中输入如下命令安装django、django-rest-framework、django-filter以及markdown。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip install django==1.8.6</div><div class="line">pip install djangorestframework</div><div class="line">pip install markdown       <span class="comment"># Markdown support for the browsable API.</span></div><div class="line">pip install django-filter  <span class="comment"># Filtering support</span></div></pre></td></tr></table></figure></p>
-<h2 id="Django工程的创建和管理"><a href="#Django工程的创建和管理" class="headerlink" title="Django工程的创建和管理"></a>Django工程的创建和管理</h2><ol>
-<li>下载PyCharm。进入<a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">官网</a>下载PyCharm</li>
-<li><p>创建工程<br>实际上所有工程的创建都可以通过单击Welcome screen界面上的Create New Project按钮来实现。<br>如果你已经打开了一个工程，可以通过菜单栏File → New Project…来创建一个新的工程。接下来在 Create New Project dialog对话框中输入工程名字、选择类型以及用到的解释器版本。单击Create，工程的个性化设置完成。<br>对于一个空的工程empty project，创建的环节已经完成了。接下里你就可以开始编写程序。但对于一些所支持的第三方框架，还有一些工作要做。根据所选择的工程类型，Pycharm会提示我们进行一些额外的框架设置。<br>在本实例中，让我们来创建开发一个Django应用：</p>
-<div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/5.png" alt="create_django.png"><br></div><br>单击Create后，一个新的Django工程就建立好了，本次建立的工程不包含应用，因此工程文件较少：<br><div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/6.png" alt="django_list.png"><br></div>
-</li>
-<li><p>加载Django服务<br>按下Ctrl+Alt+R可以进入Django服务界面：<br><div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/7.png" alt="Django_server.png"><br></div><br>在该界面下可以进行所有Django控制台操作，例如：</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">startapp &lt;应用名&gt; //创建新的应用</div><div class="line">runserver [端口 或 ip：端口] //在指定ip、端口下运行工程</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>输入命令<code>startapp firstapp</code>，创建一个新的app test，工程结构变为：</p>
-<p><div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/8.png" alt="django_list_2.png"><br></div><br>此时我们还需要在Setting目录中添加：<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">    '……',</div><div class="line">    'django.contrib.messages',</div><div class="line">    'django.contrib.staticfiles',</div><div class="line">    'firstapp',</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<ol>
-<li>创建视图链接<br>接下来我们准备为应用添加一些子视图，让它拥有”homePage”等子页面。首先，我们向urls.py文件中添加这些子页面的模式:<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url(r'^$', 'firstapp.views.homePage'),</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这些模式所涉及的页面目前还并不存在，因此需要手动向其中添加一些方法并进行模板关联，这些操作在Pycharm的帮助下会变得异常简单：你只需将鼠标指针悬停在一个未定义（Pycharm会高亮显示那些unresolved reference的代码），这是会亮起一个黄色的小灯泡，这就意味着Pycharm在此准备了一个快速提示，单击小灯泡（或者按下Alt+enter）:</p>
-<p><div align="center"><br><img src="/images/Django_Rest_Framework学习记录2/9.png" alt="view_create.png"><br></div><br>选择Create Django view method选项来在views.py文件中创建一个视图的成员方法，并与特定的模板文件相关联。接下来我们会看到以下变化：<br>templates目录不再为空，其中包含了我们创建的根模板文件。<br>views.py文件中已经包含了根视图的相关方法。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="http://blog.csdn.net/u013088062/article/details/50158239" target="_blank" rel="external">Django工程的创建和管理</a></li>
-</ul>
-
-          
+          <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>本次学习包括在<strong>win10环境下</strong>安装python，pip环境，通过pip安装django、django-rest-framework、django-filter等相关资料，最后介绍了PyCharm中如何便捷的对django工程进行创建和管理。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/09/Django-Rest-Framework学习记录-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -655,22 +554,12 @@
 
       
         
-          
-            <p><a href="http://www.django-rest-framework.org/" target="_blank" rel="external">django-rest-framework</a>是一套基于Django的RestFul框架，由于网上对django-rest-framework的中文介绍较为驳杂，因此本人在学习的同时将学习笔记记录下来，希望对以后的学习有所帮助。</p>
-<p>此次使用的各软件版本及环境：</p>
-<ul>
-<li><a href="https://www.djangoproject.com/" target="_blank" rel="external">django</a> 1.8.6</li>
-<li><a href="https://www.python.org/" target="_blank" rel="external">python</a> 2.7.10</li>
-<li><a href="http://www.django-rest-framework.org/" target="_blank" rel="external">djangorestframework</a> 3.5.3</li>
-<li><a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">pycharm</a> 2016.1.3</li>
-</ul>
-<p>此次学习主要参考了如下资料：</p>
-<ul>
-<li><a href="https://darkcooking.gitbooks.io/django-rest-framework-cn/content/" target="_blank" rel="external">Django-REST-framework教程中文版</a></li>
-</ul>
-<p><strong>注：在您阅读本文的时候上述链接可能已经发生了变化。</strong></p>
-
-          
+          <p><a href="http://www.django-rest-framework.org/">django-rest-framework</a>是一套基于Django的RestFul框架，由于网上对django-rest-framework的中文介绍较为驳杂，因此本人在学习的同时将学习笔记记录下来，希望对以后的学习有所帮助。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/09/Django-Rest-Framework学习记录-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
